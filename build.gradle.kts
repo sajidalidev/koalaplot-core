@@ -13,6 +13,7 @@ plugins {
 }
 
 repositories {
+    mavenLocal()
     google()
     mavenCentral()
 }
@@ -35,6 +36,9 @@ kotlin {
 
     iosArm64()
     iosSimulatorArm64()
+
+    tvosArm64()
+    tvosSimulatorArm64()
 
     js {
         browser()
@@ -81,11 +85,15 @@ kotlin {
 
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
-        iosMain {
+        val tvosArm64Main by getting
+        val tvosSimulatorArm64Main by getting
+        appleMain {
             dependsOn(commonMain.get())
             dependencies { }
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+            tvosArm64Main.dependsOn(this)
+            tvosSimulatorArm64Main.dependsOn(this)
         }
     }
 
@@ -109,7 +117,7 @@ dokka {
 }
 
 detekt {
-    source.setFrom("src/androidMain", "src/commonMain", "src/desktopMain", "src/iosMain", "src/jsMain", "src/wasmJsMain")
+    source.setFrom("src/androidMain", "src/commonMain", "src/desktopMain", "src/appleMain", "src/jsMain", "src/wasmJsMain")
     parallel = true
     config.setFrom("$rootDir/detekt.yml")
     buildUponDefaultConfig = true

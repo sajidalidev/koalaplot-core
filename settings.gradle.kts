@@ -10,6 +10,11 @@ pluginManagement {
 plugins {
     // See https://jmfayard.github.io/refreshVersions
     id("de.fayard.refreshVersions") version "0.60.6"
+    id("dev.sajidali.compose-tvos") version "1.4.1"
+}
+
+composeTvos {
+    verbose.set(true)
 }
 
 rootProject.name = "koalaplot-core"
